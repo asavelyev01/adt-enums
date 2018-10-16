@@ -22,8 +22,6 @@ node('scala-non-root') {
 
         stages.validateSwaggerFiles()
 
-        stages.checkfmtStep("it:scalafmtCheck")
-
         if (isReleaseTagBuild() || isDeployBuild()) {
             stages.dependencyCheck()
         }
