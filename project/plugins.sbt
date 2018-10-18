@@ -1,4 +1,4 @@
-addSbtPlugin("com.veon.sbt" % "sbt-veon" % "11.1.0")
+addSbtPlugin("com.veon.sbt" % "sbt-veon" % "11.1.3-18-g68535cc")
 
 resolvers ++= Seq(
   "Knoopje Releases" at "https://repo.knoopje.com/repository/sbt-plugins/"
