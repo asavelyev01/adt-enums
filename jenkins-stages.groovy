@@ -119,32 +119,6 @@ def runUnitTestStep() {
     }
 }
 
-def runIntegrationTestStep() {
-
-    String buildNumber = "${env.BUILD_NUMBER}".trim()
-    String commit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
-    String suffix = commit + buildNumber
-
-    stage('Integration test') {
-        gitlabCommitStatus(name: 'Integration test') {
-            timestamps {
-                timeout(time: 30, unit: "MINUTES") {
-                    try {
-                        buildContainer.inside(containerArgs) {
-                            wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
-                                sh 'sbt -mem ' + sbtMemory + ' "dockerComposeTest --project-name-suffix ' + suffix + ' it:test"'
-                            }
-                        }
-                    } finally {
-                        junit '**/target/test-reports/*.xml'
-                        this.publishAllITestReports()
-                    }
-                }
-            }
-        }
-    }
-}
-
 def publishStep(publishTask) {
     stage('Publish') {
         gitlabCommitStatus(name: 'Publish') {

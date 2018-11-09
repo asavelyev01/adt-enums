@@ -34,8 +34,6 @@ node('scala-non-root') {
             stages.publishStep('docker:publishLocal')
         }
 
-        stages.runIntegrationTestStep()
-
         if (isReleaseTagBuild()) {
             stages.publishCurrentTagReleaseNotes()
         }
