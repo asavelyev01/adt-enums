@@ -39,7 +39,7 @@ object Color extends CaseEnumCompanion[Color] {
   
   case object Blue extends Color
   
-  case class Other(r: Int, g: Int, b: Int)//Not an object!
+  case class Other(r: Int, g: Int, b: Int)//Will fail the companion initialization!
 }
 
 ```
@@ -60,7 +60,7 @@ val allColors: Seq[Color] = CaseEnum[Color].all // Set(Red, Green, Blue)
 * Getting member by it's `toString`
 
 ```scala
-val allColors: Seq[Color] = CaseEnum[Color].fromString("Red")// Option(Blue)
+val allColors: Seq[Color] = CaseEnum[Color].fromString("Red")// Some(Red)
 ```
 
 
