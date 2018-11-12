@@ -44,7 +44,7 @@ abstract class CaseEnumCompanion[E: WeakTypeTag] { self =>
       else
         reflect.runtime.currentMirror.reflectModule(module.asModule).instance
     }.map(
-        obj => obj.asInstanceOf[E]
-      )
+      obj => obj.asInstanceOf[E]
+    )
   }
 }
