@@ -32,8 +32,17 @@ lazy val `case-enum-argonaut` = project
   .enablePlugins(Library)
   .dependsOn(`case-enum`)
 
+lazy val `case-enum-slick` = project
+  .settings(
+    versionedLibraryDependencies ++= test ++ Seq(
+      "com.typesafe.slick" ^^ "slick"
+    )
+  )
+  .enablePlugins(Library)
+  .dependsOn(`case-enum`)
+
 lazy val `enums` =
   project
     .in(file("."))
-    .aggregate(`case-enum`, `case-enum-spray-json`, `case-enum-argonaut`)
+    .aggregate(`case-enum`, `case-enum-spray-json`, `case-enum-argonaut`, `case-enum-slick`)
     .enablePlugins(Library)

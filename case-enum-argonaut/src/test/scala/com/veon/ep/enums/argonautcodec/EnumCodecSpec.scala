@@ -18,7 +18,7 @@ class EnumCodecSpec extends WordSpec with Matchers {
 
       "convert from proper json to CaseEnum" in {
         val `key` = "key"
-        s"""{"$key": "EnumMemberTwo"}""".decodeEither[Map[String, TestJsonEnum]] shouldBe Right(
+        s"""{"$key": "${TestJsonEnum.EnumMemberTwo}"}""".decodeEither[Map[String, TestJsonEnum]] shouldBe Right(
           Map(key -> TestJsonEnum.EnumMemberTwo)
         )
       }
@@ -34,7 +34,6 @@ class EnumCodecSpec extends WordSpec with Matchers {
 }
 
 sealed trait TestJsonEnum
-
 object TestJsonEnum extends CaseEnumCompanion[TestJsonEnum] {
 
   case object EnumMemberOne extends TestJsonEnum
