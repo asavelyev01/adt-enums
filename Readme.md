@@ -69,7 +69,7 @@ If we consider separately defined modules, this is also:
 
 ```scala
 import com.veon.ep.enums.sprayjson._
-com.veon.ep.enums.argonautcodec._
+import com.veon.ep.enums.argonautcodec._
 
 
 case class Car(color: Color)
