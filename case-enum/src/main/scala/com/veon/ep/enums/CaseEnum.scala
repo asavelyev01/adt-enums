@@ -2,11 +2,11 @@ package com.veon.ep.enums
 
 import scala.reflect.runtime.universe._
 
-@deprecatedInheritance("Manual implementations deprecated, use `CaseEnumCompanion`.")
+@deprecatedInheritance("Manual implementations are deprecated, use `CaseEnumCompanion`.")
 abstract class CaseEnum[T] {
   type Element = T
 
-  val all: Seq[T]
+  val all: Set[T]
 
   def fromString(name: String): Option[T] = all.find(_.toString == name)
 }
@@ -46,6 +46,5 @@ abstract class CaseEnumCompanion[E: WeakTypeTag] { self =>
     }.map(
         obj => obj.asInstanceOf[E]
       )
-      .toSeq
   }
 }

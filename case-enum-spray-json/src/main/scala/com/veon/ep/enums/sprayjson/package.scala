@@ -45,10 +45,10 @@ package object sprayjson {
     }
   }
 
-  implicit def enumFormat[E: CaseEnum]: JsonFormat[E] = enumFormat(CaseEnum[E].all: _*)
+  implicit def enumFormat[E: CaseEnum]: JsonFormat[E] = enumFormat(CaseEnum[E].all.toSeq: _*)
 
   def enumFormatWithDefault[E: CaseEnum](defaultValue: E): JsonFormat[E] =
-    enumFormatWithDefault(CaseEnum[E].all: _*)(defaultValue)
+    enumFormatWithDefault(CaseEnum[E].all.toSeq: _*)(defaultValue)
 
   def enumFormatWithDefault[E](values: E*)(defaultReadValue: E): JsonFormat[E] = new JsonFormat[E] {
     private[this] def name(obj: E) = s"$obj"
