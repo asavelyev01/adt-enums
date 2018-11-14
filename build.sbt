@@ -17,7 +17,7 @@ lazy val `case-enum` = project
 lazy val `case-enum-argonaut` = project
   .settings(
     versionedLibraryDependencies ++= test ++ Seq(
-      "io.argonaut" ^^ "argonaut"
+      "io.argonaut" ^^ "argonaut" ^ Provided
     )
   )
   .enablePlugins(Library)
@@ -26,7 +26,7 @@ lazy val `case-enum-argonaut` = project
 lazy val `case-enum-slick` = project
   .settings(
     versionedLibraryDependencies ++= test ++ Seq(
-      "com.typesafe.slick" ^^ "slick"
+      "com.typesafe.slick" ^^ "slick" ^ Provided
     )
   )
   .enablePlugins(Library)
