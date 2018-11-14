@@ -20,26 +20,17 @@ node('scala-non-root') {
             stages.checkoutTag()
         }
 
-        stages.validateSwaggerFiles()
+        stages.checkfmtStep()
 
-        if (isReleaseTagBuild() || isDeployBuild()) {
+        if (isReleaseTagBuild()) {
             stages.dependencyCheck()
         }
 
         stages.runUnitTestStep()
 
-        if (isReleaseTagBuild() || isDeployBuild()) {
-            stages.publishStep('docker:publish')
-        } else {
-            stages.publishStep('docker:publishLocal')
-        }
-
         if (isReleaseTagBuild()) {
+            stages.publishStep('publish')
             stages.publishCurrentTagReleaseNotes()
-        }
-
-        if (isReleaseTagBuild() || isDeployBuild()) {
-            stages.deployStep("/backend/deploy/${stages.repoName()}", 'dev')
         }
 
         gitlabCommitStatus(name:'Build Passed') {}
@@ -48,9 +39,5 @@ node('scala-non-root') {
 
 boolean isReleaseTagBuild() {
     // jobs in the tags folder are considered release builds
-    env.JOB_NAME.contains("backend/tags/")
-}
-
-boolean isDeployBuild() {
-    isReleaseTagBuild() || env.BRANCH_NAME.equals("master")
+    env.JOB_NAME.contains("tags/")
 }
