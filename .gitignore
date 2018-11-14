@@ -9,3 +9,4 @@ out
 gen
 project/project/
 project/target/
+/jenkins-stages.groovy
