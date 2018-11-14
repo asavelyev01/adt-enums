@@ -14,15 +14,6 @@ lazy val `case-enum` = project
   )
   .enablePlugins(Library)
 
-lazy val `case-enum-spray-json` = project
-  .settings(
-    versionedLibraryDependencies ++= test ++ Seq(
-      "io.spray" ^^ "spray-json"
-    )
-  )
-  .enablePlugins(Library)
-  .dependsOn(`case-enum`)
-
 lazy val `case-enum-argonaut` = project
   .settings(
     versionedLibraryDependencies ++= test ++ Seq(
@@ -44,5 +35,5 @@ lazy val `case-enum-slick` = project
 lazy val `enums` =
   project
     .in(file("."))
-    .aggregate(`case-enum`, `case-enum-spray-json`, `case-enum-argonaut`, `case-enum-slick`)
+    .aggregate(`case-enum`, `case-enum-argonaut`, `case-enum-slick`)
     .enablePlugins(Library)

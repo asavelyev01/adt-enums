@@ -65,16 +65,14 @@ val allColors: Seq[Color] = CaseEnum[Color].fromString("Red")// Some(Red)
 
 
 If we consider separately defined modules, this is also:
-* Implicit Spray and Argonaut codecs derivation for enums in `case-enum-argonaut`, `case-enum-spray-json`.
+* Implicit Argonaut codecs derivation for enums in `case-enum-argonaut`.
 
 ```scala
-import com.veon.ep.enums.sprayjson._
 import com.veon.ep.enums.argonautcodec._
 
 
 case class Car(color: Color)
 object Car {
-  val sprayFormat = jsonFormat1(Color)//enum format derived automatically
   val argonautCodec = casecodec1(apply, unapply)("color")//enum codec derived automatically
 }
 ```
