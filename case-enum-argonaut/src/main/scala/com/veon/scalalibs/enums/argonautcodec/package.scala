@@ -1,4 +1,4 @@
-package com.veon.ep.enums
+package com.veon.scalalibs.enums
 
 import argonaut._
 import Argonaut._

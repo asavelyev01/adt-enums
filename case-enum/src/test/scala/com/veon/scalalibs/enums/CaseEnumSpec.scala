@@ -1,4 +1,4 @@
-package com.veon.ep.enums
+package com.veon.scalalibs.enums
 
 import org.scalatest.FunSpecLike
 import org.scalatest.Matchers

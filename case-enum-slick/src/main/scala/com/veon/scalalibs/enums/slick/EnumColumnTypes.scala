@@ -1,6 +1,6 @@
-package com.veon.ep.enums.slick
+package com.veon.scalalibs.enums.slick
 
-import com.veon.ep.enums.CaseEnum
+import com.veon.scalalibs.enums.CaseEnum
 import slick.jdbc.JdbcProfile
 
 import scala.reflect.ClassTag

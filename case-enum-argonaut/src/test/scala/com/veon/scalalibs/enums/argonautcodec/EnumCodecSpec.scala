@@ -1,6 +1,6 @@
-package com.veon.ep.enums.argonautcodec
+package com.veon.scalalibs.enums.argonautcodec
 
-import com.veon.ep.enums.CaseEnumCompanion
+import com.veon.scalalibs.enums.CaseEnumCompanion
 import org.scalatest.Matchers
 import org.scalatest.WordSpec
 
