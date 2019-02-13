@@ -1,4 +1,4 @@
-package com.veon.scalalibs.enums
+package com.asavelyev.enums
 
 import scala.reflect.runtime.universe._
 
@@ -15,9 +15,11 @@ object CaseEnum {
   def apply[T: CaseEnum] = implicitly[CaseEnum[T]]
 }
 
-abstract class CaseEnumCompanion[E: WeakTypeTag] { self =>
+abstract class CaseEnumCompanion[E: WeakTypeTag] {
+  self =>
+
   implicit object enum extends CaseEnum[E] {
-    private def sealedDescendants: Set[Symbol] = {
+    private def sealedDescendants: Set[Symbol] ={
       val symbol = weakTypeOf[E].typeSymbol
       val internal = symbol.asInstanceOf[scala.reflect.internal.Symbols#Symbol]
 
@@ -31,20 +33,22 @@ abstract class CaseEnumCompanion[E: WeakTypeTag] { self =>
         internal.sealedDescendants.map(_.asInstanceOf[Symbol]) - symbol
     }
 
-    private def sealedError(message: String) = {
+    private def sealedError(message: String) ={
       throw new IllegalStateException(
         s"Malformed enum ${weakTypeOf[E]}: $message. Enum should be statically accessible sealed type with `case object` descendants."
       )
     }
 
-    lazy val all = sealedDescendants.map { symbol =>
-      val module = symbol.owner.typeSignature.member(symbol.name.toTermName)
-      if (!module.isModule)
-        sealedError(s"descendant `$symbol` is not an object")
-      else
-        reflect.runtime.currentMirror.reflectModule(module.asModule).instance
+    lazy val all = sealedDescendants.map{
+      symbol =>
+        val module = symbol.owner.typeSignature.member(symbol.name.toTermName)
+        if (!module.isModule)
+          sealedError(s"descendant `$symbol` is not an object")
+        else
+          reflect.runtime.currentMirror.reflectModule(module.asModule).instance
     }.map(
       obj => obj.asInstanceOf[E]
     )
   }
+
 }

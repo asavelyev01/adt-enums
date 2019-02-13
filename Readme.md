@@ -5,7 +5,7 @@ In become a common knowledge that built-in Scala `Enumeration` class is both awk
 There's a good reason then to introduce custom library to model enumerations.
 
 ## Whats
-`com.veon.scalalibs.enums.CaseEnum` is a type class representing sealed hierarchy with a single ancestor (trait or class)
+`com.asavelyev.enums.CaseEnum` is a type class representing sealed hierarchy with a single ancestor (trait or class)
 and a set of `[case] object`s deriving from it. We will call such objects _members_. 
 The `toString` representation of a member is considered it's unique key within a given `CaseEnum`.
 
@@ -68,7 +68,7 @@ If we consider separately defined modules, this is also:
 * Implicit Argonaut codecs derivation for enums in `case-enum-argonaut`.
 
 ```scala
-import com.veon.scalalibs.enums.argonautcodec._
+import com.asavelyev.enums.argonautcodec._
 
 
 case class Car(color: Color)

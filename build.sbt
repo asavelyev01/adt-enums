@@ -1,5 +1,5 @@
 name := "enums"
-organization in ThisBuild := "com.veon.scalalibs"
+organization in ThisBuild := "com.asavelyev"
 
 scalacOptions in ThisBuild += "-Xfatal-warnings"
 scalaVersion in ThisBuild := "2.12.7"
