@@ -1,7 +1,7 @@
-package com.veon.ep.enums
+package com.asavelyev.enums
 
+import argonaut.Argonaut._
 import argonaut._
-import Argonaut._
 
 package object argonautcodec {
   implicit def enumCodec[E: CaseEnum]: CodecJson[E] =
@@ -12,7 +12,7 @@ package object argonautcodec {
           name <- c.as[String]
           result <- CaseEnum[E].fromString(name) match {
             case Some(value) => DecodeResult.ok(value)
-            case None        => DecodeResult.fail(s"Enum value $name doesn't exist", c.history)
+            case None => DecodeResult.fail(s"Enum value $name doesn't exist", c.history)
           }
         } yield result
     )

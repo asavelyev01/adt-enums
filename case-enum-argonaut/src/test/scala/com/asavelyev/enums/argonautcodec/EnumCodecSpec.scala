@@ -1,8 +1,7 @@
-package com.veon.ep.enums.argonautcodec
+package com.asavelyev.enums.argonautcodec
 
-import com.veon.ep.enums.CaseEnumCompanion
-import org.scalatest.Matchers
-import org.scalatest.WordSpec
+import com.asavelyev.enums.CaseEnumCompanion
+import org.scalatest.{Matchers, WordSpec}
 
 class EnumCodecSpec extends WordSpec with Matchers {
 
@@ -25,7 +24,7 @@ class EnumCodecSpec extends WordSpec with Matchers {
 
       "report bad enum string" in {
         val `key` = "key"
-        s"""{"$key": "EnumMemberFive"}""".decodeEither[Map[String, TestJsonEnum]] should matchPattern {
+        s"""{"$key": "EnumMemberFive"}""".decodeEither[Map[String, TestJsonEnum]] should matchPattern{
           case Left(errorMsg: String) if errorMsg.startsWith("Enum value EnumMemberFive doesn't exist") =>
         }
       }
@@ -34,9 +33,11 @@ class EnumCodecSpec extends WordSpec with Matchers {
 }
 
 sealed trait TestJsonEnum
+
 object TestJsonEnum extends CaseEnumCompanion[TestJsonEnum] {
 
   case object EnumMemberOne extends TestJsonEnum
 
   case object EnumMemberTwo extends TestJsonEnum
+
 }

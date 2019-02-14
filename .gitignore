@@ -9,3 +9,7 @@ out
 gen
 project/project/
 project/target/
+target
+.scalafmt.conf
+deployment.groovy
+jenkins-stages.groovy

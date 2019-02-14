@@ -1,11 +1,11 @@
 # Enumeration type class
 
 ## Whys 
-In become a common knowledge that built-in Scala `Enumeration` class is both awkward in design and unhandy in usage.
+It became common knowledge that built-in Scala `Enumeration` class is both awkward in design and unhandy in usage.
 There's a good reason then to introduce custom library to model enumerations.
 
 ## Whats
-`com.veon.ep.enums.CaseEnum` is a type class representing sealed hierarchy with a single ancestor (trait or class)
+`com.asavelyev.enums.CaseEnum` is a type class representing sealed hierarchy with a single ancestor (trait or class)
 and a set of `[case] object`s deriving from it. We will call such objects _members_. 
 The `toString` representation of a member is considered it's unique key within a given `CaseEnum`.
 
@@ -65,16 +65,14 @@ val allColors: Seq[Color] = CaseEnum[Color].fromString("Red")// Some(Red)
 
 
 If we consider separately defined modules, this is also:
-* Implicit Spray and Argonaut codecs derivation for enums in `case-enum-argonaut`, `case-enum-spray-json`.
+* Implicit Argonaut codecs derivation for enums in `case-enum-argonaut`.
 
 ```scala
-import com.veon.ep.enums.sprayjson._
-import com.veon.ep.enums.argonautcodec._
+import com.asavelyev.enums.argonautcodec._
 
 
 case class Car(color: Color)
 object Car {
-  val sprayFormat = jsonFormat1(Color)//enum format derived automatically
   val argonautCodec = casecodec1(apply, unapply)("color")//enum codec derived automatically
 }
 ```
