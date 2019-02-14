@@ -1,7 +1,7 @@
 # Enumeration type class
 
 ## Whys 
-In become a common knowledge that built-in Scala `Enumeration` class is both awkward in design and unhandy in usage.
+It became common knowledge that built-in Scala `Enumeration` class is both awkward in design and unhandy in usage.
 There's a good reason then to introduce custom library to model enumerations.
 
 ## Whats
