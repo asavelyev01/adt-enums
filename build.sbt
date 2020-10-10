@@ -3,6 +3,7 @@ organization in ThisBuild := "com.asavelyev"
 
 scalacOptions in ThisBuild += "-Xfatal-warnings"
 scalaVersion in ThisBuild := "2.13.3"
+crossScalaVersions in ThisBuild := Seq(scalaVersion.value, "2.12.12")
 
 val test = Seq(
   "org.scalatest" %% "scalatest" % "3.2.0" % "test"
