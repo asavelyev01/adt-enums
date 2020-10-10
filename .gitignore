@@ -13,3 +13,9 @@ target
 .scalafmt.conf
 deployment.groovy
 jenkins-stages.groovy
+.bloop/
+.bsp/
+.metals/
+.vscode/
+project/.bloop/
+project/metals.sbt

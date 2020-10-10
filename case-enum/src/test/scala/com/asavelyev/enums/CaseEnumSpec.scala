@@ -1,33 +1,37 @@
 package com.asavelyev.enums
 
-import org.scalatest.{FunSpecLike, Matchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class CaseEnumSpec extends FunSpecLike with Matchers {
-  describe("CaseEnum"){
-    it("Should find enum member by name"){
+
+
+class CaseEnumSpec extends AnyWordSpec with Matchers {
+  "CaseEnum" should {
+    "Should find enum member by name" in {
       CaseEnum[TestEnum].fromString("EnumMemberTwo").get should be theSameInstanceAs TestEnum.EnumMemberTwo
       CaseEnum[TestEnum].fromString("EnumMemberOne").get should be theSameInstanceAs TestEnum.EnumMemberOne
     }
 
-    it("should provide enum members list"){
+    "should provide enum members list" in {
       CaseEnum[TestEnum].all should contain theSameElementsAs Seq(TestEnum.EnumMemberOne, TestEnum.EnumMemberTwo)
     }
 
-    it("should report error for non-static descendant"){
+    "should report error for non-static descendant" in {
       the[IllegalStateException] thrownBy CaseEnum[TestEnumWithClass].all should have message
         s"Malformed enum $pckg.TestEnumWithClass: " +
           "descendant `class Free` is not an object. " +
           "Enum should be statically accessible sealed type with `case object` descendants."
     }
 
-    it("should report error for non-sealed type"){
+    "should report error for non-sealed type" in {
       the[IllegalStateException] thrownBy CaseEnum[NonSealedTestEnum].all should have message
         s"Malformed enum $pckg.NonSealedTestEnum: " +
           "not sealed. " +
           "Enum should be statically accessible sealed type with `case object` descendants."
     }
 
-    it("should report error for path-dependent type"){
+    "should report error for path-dependent type" in {
       the[IllegalStateException] thrownBy {
         sealed trait InnerEnum
         object InnerEnum extends CaseEnumCompanion[InnerEnum] {

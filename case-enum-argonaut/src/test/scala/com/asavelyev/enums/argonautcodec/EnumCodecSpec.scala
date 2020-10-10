@@ -1,9 +1,11 @@
 package com.asavelyev.enums.argonautcodec
 
 import com.asavelyev.enums.CaseEnumCompanion
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-class EnumCodecSpec extends WordSpec with Matchers {
+
+class EnumCodecSpec extends AnyWordSpec with Matchers {
 
   "enumFormat" when {
     "using enumFormat" should {
